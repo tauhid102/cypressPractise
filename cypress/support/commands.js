@@ -25,3 +25,4 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 import 'cypress-iframe';
 import '@4tw/cypress-drag-drop'
+import 'cypress-file-upload';
