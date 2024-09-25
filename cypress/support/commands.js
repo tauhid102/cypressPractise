@@ -26,3 +26,22 @@
 import 'cypress-iframe';
 import '@4tw/cypress-drag-drop'
 import 'cypress-file-upload';
+Cypress.Commands.add("clickLink",label=>{
+    cy.get('a').contains(label).click();
+})
+
+// Overwriting the default cy.contains command
+Cypress.Commands.overwriteQuery('contains', (originalFn, selector, text, options) => {
+    if(typeof text==="object"){
+        options=text
+        text=filter
+        filter=undefined
+    }
+    options.matchCase=false
+    return originalFn(subject, filter,text,options)
+});
+Cypress.Commands.add('loginUser',(userName,passWord)=>{
+    cy.get("input[placeholder='Username']").type(userName);
+    cy.get("input[placeholder='Password']").type(passWord);
+    cy.get("button[type='submit']").click();
+})
